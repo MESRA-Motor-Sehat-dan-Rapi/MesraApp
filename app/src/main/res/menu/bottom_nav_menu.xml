@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Item Beranda -->
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Beranda" />
+
+    <!-- Item Pengingat -->
+    <item
+        android:id="@+id/nav_reminder"
+        android:icon="@drawable/ic_reminder"
+        android:title="Pengingat" />
+
+    <!-- Item Profil -->
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profil" />
+
+</menu>

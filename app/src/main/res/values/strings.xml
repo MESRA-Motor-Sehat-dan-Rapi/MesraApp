@@ -11,4 +11,18 @@
     <string name="signin_subtitle">Masuk ke Akun Anda</string>
     <string name="btn_signin">Masuk</string>
     <string name="dont_have_account">Belum punya akun? Daftar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="reminder_title">Pengingat Perawatan Rutin</string>
+    <string name="reminder_date">Tanggal Pengingat</string>
+    <string name="reminder_location">Bengkel Mesra Motor</string>
+    <string name="checkmark_icon">Status pengingat</string>
+    <string name="reminder_header">Jangan tunda! Tetapkan jadwal servis motor kamu hari ini!</string>
+    <string name="save">Simpan</string>
+    <string name="cancel">Batal</string>
+    <string name="description_date_button">Pilih tanggal pengingat</string>
+    <string name="add_reminder">Add Reminder</string>
+    <string name="reminder_item_time">15.00</string>
+    <string name="reminder_item_location">Bengkel 32</string>
+    <string name="fab_camera_description">Buka kamera</string>
+    <string name="fab_edit_description">Edit pengingat</string>
 </resources>
