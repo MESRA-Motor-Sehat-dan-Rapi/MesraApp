@@ -1,21 +1,35 @@
 package com.hana.vehicleappproject.ui.reminder
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
-class ReminderViewModel : ViewModel() {
-    private val reminderRepository = ReminderRepository() // Mengakses repository
-    val reminders: LiveData<List<Reminder>> = reminderRepository.getReminders()
+class ReminderViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository: ReminderRepository
+    val allReminders: LiveData<List<Reminder>>
 
-    fun addReminder(reminder: Reminder) {
-        reminderRepository.addReminder(reminder)
+    init {
+        val reminderDao = ReminderDatabase.getDatabase(application).reminderDao()
+        repository = ReminderRepository(reminderDao)
+        allReminders = repository.allReminder
     }
 
-    fun updateReminder(reminder: Reminder) {
-        reminderRepository.updateReminder(reminder)
+    fun insert(reminder: Reminder) = viewModelScope.launch {
+        repository.insert(reminder)
     }
 
-    fun deleteReminder(reminder: Reminder) {
-        reminderRepository.deleteReminder(reminder)
+    fun update(reminder: Reminder) = viewModelScope.launch {
+        repository.update(reminder)
+    }
+
+    fun delete(reminder: Reminder) = viewModelScope.launch {
+        repository.delete(reminder)
+    }
+
+    fun getReminderById(id: Int) = viewModelScope.launch {
+        repository.getReminderById(id)
     }
 }
+

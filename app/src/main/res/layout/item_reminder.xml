@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:text="@string/reminder_title"
+            android:text="@string/Reminder_title"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />

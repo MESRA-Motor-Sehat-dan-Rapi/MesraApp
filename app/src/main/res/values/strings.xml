@@ -11,4 +11,5 @@
     <string name="signin_subtitle">Masuk ke Akun Anda</string>
     <string name="btn_signin">Masuk</string>
     <string name="dont_have_account">Belum punya akun? Daftar</string>
+    <string name="judul_pengingat">Judul Pengingat</string>
 </resources>
