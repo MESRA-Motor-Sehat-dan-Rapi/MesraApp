@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/description_date_button"
             android:onClick="showDatePicker"
-            android:src="@drawable/ic_date" />
+            android:src="@drawable/ic_date"
+            tools:ignore="OnClick" />
 
         <TextView
             android:id="@+id/tvDueDate"
@@ -63,6 +64,22 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:lines="5" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Input Lokasi Pengingat -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Lokasi Pengingat">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etReminderLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:lines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Tanda Selesai -->

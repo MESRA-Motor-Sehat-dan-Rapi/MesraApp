@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.hana.vehicleappproject.R
 import com.hana.vehicleappproject.databinding.ItemReminderBinding
 import com.hana.vehicleappproject.ui.reminder.Reminder
 
@@ -30,7 +31,10 @@ class ReminderAdapter :
         fun bind(reminder: Reminder) {
             binding.reminderTitle.text = reminder.title
             binding.reminderDate.text = reminder.date
-            binding.reminderIcon.setImageResource(reminder.iconRes)
+            binding.reminderLocation.text = reminder.location // Menambahkan lokasi jika ada
+            binding.checkmarkIcon.setImageResource(
+                if (reminder.isCompleted) R.drawable.ic_checked else R.drawable.ic_unchecked
+            ) // Ikon berdasarkan status
         }
     }
 

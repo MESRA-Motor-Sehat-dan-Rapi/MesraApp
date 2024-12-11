@@ -4,9 +4,10 @@ plugins {
     id("kotlin-kapt")
 }
 
+
 android {
     namespace = "com.hana.vehicleappproject"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.hana.vehicleappproject"
@@ -21,6 +22,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+
 
 
     buildTypes {
@@ -59,20 +62,20 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 // Room Database (Room components)
-    implementation("androidx.room:room-runtime:2.5.2")
-    kapt("androidx.room:room-compiler:2.5.2") // Untuk kode Room Annotation Processor
-    implementation("androidx.room:room-ktx:2.5.2") // Untuk fungsi coroutine (suspend) di DAO
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler) // Untuk kode Room Annotation Processor
+    implementation(libs.androidx.room.ktx) // Untuk fungsi coroutine (suspend) di DAO
 
     // ViewModel dan LiveData (Jetpack Components)
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Coroutines (untuk background threading)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation(libs.kotlinx.coroutines.android)
 
     // Testing
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit.v115)
+    androidTestImplementation(libs.androidx.espresso.core.v351)
 }

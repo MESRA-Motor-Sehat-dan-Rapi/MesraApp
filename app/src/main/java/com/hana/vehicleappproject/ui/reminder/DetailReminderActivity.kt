@@ -4,7 +4,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.hana.vehicleappproject.R
+import com.hana.vehicleappproject.databinding.ActivityDetailReminderBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,23 +13,28 @@ class DetailReminderActivity : AppCompatActivity() {
     private var isEditMode = false
     private var reminderDate: Date? = null
 
+    private var _binding: ActivityDetailReminderBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_reminder)
+
+        _binding = ActivityDetailReminderBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Set data awal
         val title = "Judul Contoh"
         val description = "Deskripsi contoh"
         reminderDate = Calendar.getInstance().time
 
-        etReminderTitle.setText(title)
-        etReminderDescription.setText(description)
-        tvDueDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(reminderDate!!)
+        binding.etReminderTitle.setText(title)
+        binding.etReminderDescription.setText(description)
+        binding.tvDueDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(reminderDate!!)
 
         checkReminderStatus()
 
         // Tombol Edit dan Simpan
-        btnEditSave.setOnClickListener {
+        binding.btnEditSave.setOnClickListener {
             if (isEditMode) {
                 saveReminder()
             } else {
@@ -38,28 +43,28 @@ class DetailReminderActivity : AppCompatActivity() {
         }
 
         // Tombol Hapus
-        btnDelete.setOnClickListener {
+        binding.btnDelete.setOnClickListener {
             deleteReminder()
         }
 
         // Pemilihan Tanggal
-        btnDatePicker.setOnClickListener {
+        binding.btnDatePicker.setOnClickListener {
             showDatePicker()
         }
     }
 
     private fun enableEditMode() {
         isEditMode = true
-        etReminderTitle.isEnabled = true
-        etReminderDescription.isEnabled = true
-        btnEditSave.text = "Simpan"
+        binding.etReminderTitle.isEnabled = true
+        binding.etReminderDescription.isEnabled = true
+        binding.btnEditSave.text = "Simpan"
     }
 
     private fun saveReminder() {
         isEditMode = false
-        etReminderTitle.isEnabled = false
-        etReminderDescription.isEnabled = false
-        btnEditSave.text = "Edit"
+        binding.etReminderTitle.isEnabled = false
+        binding.etReminderDescription.isEnabled = false
+        binding.btnEditSave.text = "Edit"
 
         // Simpan logika (misal ke database atau shared preferences)
         Toast.makeText(this, "Reminder berhasil disimpan", Toast.LENGTH_SHORT).show()
@@ -78,7 +83,7 @@ class DetailReminderActivity : AppCompatActivity() {
             val selectedDate = Calendar.getInstance()
             selectedDate.set(year, month, dayOfMonth)
             reminderDate = selectedDate.time
-            tvDueDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(reminderDate!!)
+            binding.tvDueDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(reminderDate!!)
             checkReminderStatus()
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
@@ -86,11 +91,11 @@ class DetailReminderActivity : AppCompatActivity() {
     private fun checkReminderStatus() {
         val currentDate = Calendar.getInstance().time
         if (reminderDate != null && reminderDate!!.before(currentDate)) {
-            tvStatus.text = "Status: Selesai"
-            tvStatus.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            binding.tvStatus.text = "Status: Selesai"
+            binding.tvStatus.setTextColor(resources.getColor(android.R.color.holo_green_dark))
         } else {
-            tvStatus.text = "Status: Belum Selesai"
-            tvStatus.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+            binding.tvStatus.text = "Status: Belum Selesai"
+            binding.tvStatus.setTextColor(resources.getColor(android.R.color.holo_red_dark))
         }
     }
 }

@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:text="@string/Reminder_title"
+            android:text="Reminder Title"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/reminderTitle"
-            android:text="@string/reminder_date"
+            android:text="Reminder Date"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -43,9 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/reminderDate"
-            android:layout_marginTop="16dp"
-            android:text="@string/reminder_location"
-            android:textColor="#040404"
+            android:layout_marginTop="8dp"
+            android:text="Location"
+            android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
         <!-- Checkmark Icon -->
