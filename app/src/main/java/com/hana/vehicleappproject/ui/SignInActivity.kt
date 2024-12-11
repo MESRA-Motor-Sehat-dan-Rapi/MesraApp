@@ -6,7 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.hana.vehicleappproject.R
+import com.hana.vehicleappproject.data.retrofit.RetrofitInstance
+import com.hana.vehicleappproject.data.login.LoginRequest
+import kotlinx.coroutines.launch
 
 class SignInActivity : AppCompatActivity() {
 
@@ -19,7 +23,6 @@ class SignInActivity : AppCompatActivity() {
         val signInButton = findViewById<Button>(R.id.signinButton)
         val signUpButton = findViewById<Button>(R.id.signupButton)
 
-        // Logic for Sign In
         signInButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
@@ -27,16 +30,38 @@ class SignInActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Harap isi email dan password", Toast.LENGTH_SHORT).show()
             } else {
-                // Add authentication logic here (Firebase/Auth API)
-                Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
-                // Navigate to Home or MainActivity
+                authenticateUser(email, password)
             }
         }
 
-        // Navigate to SignUpActivity
         signUpButton.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun authenticateUser(email: String, password: String) {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitInstance.api.login(LoginRequest(email, password))
+                if (response.isSuccessful && response.body()?.success == true) {
+                    Toast.makeText(this@SignInActivity, "Login berhasil!", Toast.LENGTH_SHORT).show()
+
+                    // Navigasi ke HomeActivity atau MainActivity
+                    val intent = Intent(this@SignInActivity, HomeFragment::class.java)
+                    intent.putExtra("TOKEN", response.body()?.token)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this@SignInActivity,
+                        response.body()?.message ?: "Login gagal",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@SignInActivity, "Terjadi kesalahan: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

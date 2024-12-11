@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hana.vehicleappproject.R
+import com.hana.vehicleappproject.adapter.ReminderAdapter
+import com.hana.vehicleappproject.viewmodel.ReminderViewModel
 
 class ReminderFragment : Fragment() {
     private val viewModel: ReminderViewModel by viewModels()

@@ -1,9 +1,12 @@
-package com.hana.vehicleappproject.ui.reminder
+package com.hana.vehicleappproject.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.hana.vehicleappproject.ui.reminder.Reminder
+import com.hana.vehicleappproject.data.local.room.ReminderDatabase
+import com.hana.vehicleappproject.data.repository.ReminderRepository
 import kotlinx.coroutines.launch
 
 class ReminderViewModel(application: Application) : AndroidViewModel(application) {

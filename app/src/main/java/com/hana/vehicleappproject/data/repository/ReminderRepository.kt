@@ -1,6 +1,9 @@
-package com.hana.vehicleappproject.ui.reminder
+package com.hana.vehicleappproject.data.repository
 
 import androidx.lifecycle.LiveData
+import com.hana.vehicleappproject.ui.reminder.Reminder
+import com.hana.vehicleappproject.data.local.room.ReminderDao
+import com.hana.vehicleappproject.data.local.room.ReminderDatabase
 
 class ReminderRepository {
 

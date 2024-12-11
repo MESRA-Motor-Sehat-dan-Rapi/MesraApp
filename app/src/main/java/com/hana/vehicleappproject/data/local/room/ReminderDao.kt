@@ -1,7 +1,8 @@
-package com.hana.vehicleappproject.ui.reminder
+package com.hana.vehicleappproject.data.local.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.hana.vehicleappproject.ui.reminder.Reminder
 
 @Dao
 interface ReminderDao {

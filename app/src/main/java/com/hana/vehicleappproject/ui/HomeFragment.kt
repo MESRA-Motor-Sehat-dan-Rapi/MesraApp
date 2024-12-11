@@ -1,21 +1,24 @@
 package com.hana.vehicleappproject.ui
 
-import com.hana.vehicleappproject.adapter.JadwalAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hana.vehicleappproject.adapter.ReminderAdapter
 import com.hana.vehicleappproject.databinding.FragmentHomeBinding
+import com.hana.vehicleappproject.viewmodel.ReminderViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var jadwalAdapter: JadwalAdapter
-    private lateinit var tipsAdapter: TipsAdapter
+    private val viewModel: ReminderViewModel by viewModels()
+    private lateinit var reminderAdapter: ReminderAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,14 +26,16 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        jadwalAdapter = JadwalAdapter(getDummyJadwal())
+        // Inisialisasi ReminderAdapter
+        reminderAdapter = ReminderAdapter()
         binding.rvJadwalPerawatan.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvJadwalPerawatan.adapter = jadwalAdapter
+        binding.rvJadwalPerawatan.adapter = reminderAdapter
 
-        tipsAdapter = TipsAdapter(getDummyTips())
-        binding.rvTipsPerawatan.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvTipsPerawatan.adapter = tipsAdapter
+        // Observasi data dari ViewModel
+        viewModel.getUncheckedReminders().observe(viewLifecycleOwner, Observer { reminders ->
+            reminderAdapter.submitList(reminders)
+        })
 
         return binding.root
     }
@@ -38,17 +43,5 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun getDummyJadwal(): List<String> {
-        return listOf("Senin, 12 Desember", "Selasa, 13 Desember", "Rabu, 14 Desember")
-    }
-
-    private fun getDummyTips(): List<String> {
-        return listOf(
-            "Periksa tekanan ban secara rutin.",
-            "Ganti oli setiap 2000 km.",
-            "Pastikan rem dalam kondisi baik."
-        )
     }
 }

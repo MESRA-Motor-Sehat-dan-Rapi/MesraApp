@@ -1,4 +1,4 @@
-package com.hana.vehicleappproject.ui.reminder
+package com.hana.vehicleappproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hana.vehicleappproject.databinding.ItemReminderBinding
+import com.hana.vehicleappproject.ui.reminder.Reminder
 
 class ReminderAdapter :
     ListAdapter<Reminder, ReminderAdapter.ReminderViewHolder>(REMINDER_COMPARATOR) {
@@ -18,16 +19,18 @@ class ReminderAdapter :
     }
 
     override fun onBindViewHolder(holder: ReminderViewHolder, position: Int) {
-        val currentItem = getItem(position)
-        holder.bind(currentItem)
+        val reminder = getItem(position)
+        holder.bind(reminder)
     }
 
     inner class ReminderViewHolder(private val binding: ItemReminderBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        // Binding menggunakan ItemReminderBinding
         fun bind(reminder: Reminder) {
             binding.reminderTitle.text = reminder.title
             binding.reminderDate.text = reminder.date
+            binding.reminderIcon.setImageResource(reminder.iconRes)
         }
     }
 
@@ -38,4 +41,3 @@ class ReminderAdapter :
         }
     }
 }
-

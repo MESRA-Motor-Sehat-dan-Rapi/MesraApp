@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
 import com.hana.vehicleappproject.R
+import com.hana.vehicleappproject.viewmodel.ReminderViewModel
 
 class AddReminderActivity : AppCompatActivity() {
     private val viewModel: ReminderViewModel by viewModels()
