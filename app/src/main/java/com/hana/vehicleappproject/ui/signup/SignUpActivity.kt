@@ -1,4 +1,4 @@
-package com.hana.vehicleappproject.ui
+package com.hana.vehicleappproject.ui.signup
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.hana.vehicleappproject.R
-import com.hana.vehicleappproject.data.retrofit.RetrofitInstance
+import com.hana.vehicleappproject.data.retrofit.ApiConfig
 import com.hana.vehicleappproject.data.signup.SignUpRequest
 import kotlinx.coroutines.launch
 
@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun registerUser(email: String, password: String) {
         lifecycleScope.launch {
             try {
-                val response = RetrofitInstance.api.register(SignUpRequest(email, password))
+                val response = ApiConfig.api.register(SignUpRequest(email, password))
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(this@SignUpActivity, "Registrasi berhasil!", Toast.LENGTH_SHORT).show()
                     finish() // Kembali ke SignInActivity

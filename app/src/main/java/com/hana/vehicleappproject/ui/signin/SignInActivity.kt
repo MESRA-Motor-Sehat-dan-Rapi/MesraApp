@@ -1,4 +1,4 @@
-package com.hana.vehicleappproject.ui
+package com.hana.vehicleappproject.ui.signin
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.hana.vehicleappproject.R
-import com.hana.vehicleappproject.data.retrofit.RetrofitInstance
+import com.hana.vehicleappproject.data.retrofit.ApiConfig
 import com.hana.vehicleappproject.data.login.LoginRequest
+import com.hana.vehicleappproject.ui.HomeFragment
+import com.hana.vehicleappproject.ui.signup.SignUpActivity
 import kotlinx.coroutines.launch
 
 class SignInActivity : AppCompatActivity() {
@@ -43,7 +45,7 @@ class SignInActivity : AppCompatActivity() {
     private fun authenticateUser(email: String, password: String) {
         lifecycleScope.launch {
             try {
-                val response = RetrofitInstance.api.login(LoginRequest(email, password))
+                val response = ApiConfig.api.login(LoginRequest(email, password))
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(this@SignInActivity, "Login berhasil!", Toast.LENGTH_SHORT).show()
 
