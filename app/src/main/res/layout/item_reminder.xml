@@ -55,7 +55,6 @@
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_unchecked"
-            android:contentDescription="@string/checkmark_icon" />
+            android:src="@drawable/ic_unchecked" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

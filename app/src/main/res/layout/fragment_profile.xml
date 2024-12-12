@@ -31,8 +31,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/circle_placeholder" />
+        android:layout_marginTop="40dp" />
 
     <!-- CardView for user details -->
     <androidx.cardview.widget.CardView

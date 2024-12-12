@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt")
+//    id("com.google.devtools.ksp")
 }
 
 
@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.hana.vehicleappproject"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -36,11 +36,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -61,9 +61,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 // Room Database (Room components)
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler) // Untuk kode Room Annotation Processor
+//    ksp(libs.androidx.room.compiler.v250)// Untuk kode Room Annotation Processor)
     implementation(libs.androidx.room.ktx) // Untuk fungsi coroutine (suspend) di DAO
 
     // ViewModel dan LiveData (Jetpack Components)
