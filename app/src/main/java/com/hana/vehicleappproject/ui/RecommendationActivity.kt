@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hana.vehicleappproject.R
+import com.hana.vehicleappproject.adapter.RecommendationAdapter
+import com.hana.vehicleappproject.viewmodel.RecommendationViewModel
 
 class RecommendationActivity : AppCompatActivity() {
     private lateinit var viewModel: RecommendationViewModel

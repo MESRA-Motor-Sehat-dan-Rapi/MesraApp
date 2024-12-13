@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.hana.vehicleappproject.ui.reminder.Reminder
+import com.hana.vehicleappproject.data.local.entity.Reminder
 import com.hana.vehicleappproject.data.local.room.ReminderDatabase
 import com.hana.vehicleappproject.data.repository.ReminderRepository
 import kotlinx.coroutines.launch
@@ -14,9 +14,9 @@ class ReminderViewModel(application: Application) : AndroidViewModel(application
     val allReminders: LiveData<List<Reminder>>
 
     init {
-        val reminderDao = ReminderDatabase.getDatabase(application).reminderDao()
-        repository = ReminderRepository(reminderDao)
-        allReminders = repository.allReminder
+        val dao = ReminderDatabase.getDatabase(application).reminderDao()
+        repository = ReminderRepository(dao)
+        allReminders = repository.allReminders
     }
 
     fun insert(reminder: Reminder) = viewModelScope.launch {
@@ -30,9 +30,4 @@ class ReminderViewModel(application: Application) : AndroidViewModel(application
     fun delete(reminder: Reminder) = viewModelScope.launch {
         repository.delete(reminder)
     }
-
-    fun getReminderById(id: Int) = viewModelScope.launch {
-        repository.getReminderById(id)
-    }
 }
-

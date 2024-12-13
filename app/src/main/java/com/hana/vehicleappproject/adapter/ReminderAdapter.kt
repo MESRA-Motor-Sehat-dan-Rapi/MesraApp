@@ -2,46 +2,61 @@ package com.hana.vehicleappproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hana.vehicleappproject.R
 import com.hana.vehicleappproject.databinding.ItemReminderBinding
-import com.hana.vehicleappproject.ui.reminder.Reminder
+import com.hana.vehicleappproject.data.local.entity.Reminder
 
-class ReminderAdapter :
-    ListAdapter<Reminder, ReminderAdapter.ReminderViewHolder>(REMINDER_COMPARATOR) {
+class ReminderAdapter(
+    private var reminders: List<Reminder>,
+    private val onReminderClick: (Reminder) -> Unit,
+    private val onCheckmarkClick: (Reminder) -> Unit
+) : RecyclerView.Adapter<ReminderAdapter.ReminderViewHolder>() {
+
+    inner class ReminderViewHolder(private val binding: ItemReminderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(reminder: Reminder) {
+            binding.reminderTitle.text = reminder.title
+            binding.reminderDate.text = reminder.date
+            binding.reminderLocation.text = reminder.location
+
+            // Update checkmark icon based on isChecked status
+            val checkmarkIconRes = if (reminder.isChecked) {
+                R.drawable.ic_checked // Replace with your checked icon resource
+            } else {
+                R.drawable.ic_unchecked // Replace with your unchecked icon resource
+            }
+            binding.checkmarkIcon.setImageResource(checkmarkIconRes)
+
+            // Handle item click
+            binding.root.setOnClickListener {
+                onReminderClick(reminder)
+            }
+
+            // Handle checkmark click
+            binding.checkmarkIcon.setOnClickListener {
+                onCheckmarkClick(reminder)
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderViewHolder {
         val binding = ItemReminderBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
         return ReminderViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ReminderViewHolder, position: Int) {
-        val reminder = getItem(position)
-        holder.bind(reminder)
+        holder.bind(reminders[position])
     }
 
-    inner class ReminderViewHolder(private val binding: ItemReminderBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    override fun getItemCount(): Int = reminders.size
 
-        // Binding menggunakan ItemReminderBinding
-        fun bind(reminder: Reminder) {
-            binding.reminderTitle.text = reminder.title
-            binding.reminderDate.text = reminder.date
-            binding.reminderLocation.text = reminder.location // Menambahkan lokasi jika ada
-            binding.checkmarkIcon.setImageResource(
-                if (reminder.isCompleted) R.drawable.ic_checked else R.drawable.ic_unchecked
-            ) // Ikon berdasarkan status
-        }
-    }
-
-    companion object {
-        private val REMINDER_COMPARATOR = object : DiffUtil.ItemCallback<Reminder>() {
-            override fun areItemsTheSame(oldItem: Reminder, newItem: Reminder) = oldItem.id == newItem.id
-            override fun areContentsTheSame(oldItem: Reminder, newItem: Reminder) = oldItem == newItem
-        }
+    fun updateData(newReminders: List<Reminder>) {
+        reminders = newReminders
+        notifyDataSetChanged()
     }
 }

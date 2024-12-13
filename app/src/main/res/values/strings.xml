@@ -14,5 +14,12 @@
     <string name="judul_pengingat">Judul Pengingat</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="description_date_button">Pilih tanggal</string>
+    <string name="reminder_title">Judul Pengingat</string>
+    <string name="reminder_date">Tanggal Pengingat</string>
+    <string name="reminder_description">Deskripsi Pengingat</string>
+    <string name="reminder_location">Lokasi Pengingat</string>
+    <string name="save">Simpan</string>
+    <string name="cancel">Batal</string>
+    <string name="description_date_button">Tanggal</string>
+    <string name="reminder_header">Pengingat Perawatan Motor</string>
 </resources>

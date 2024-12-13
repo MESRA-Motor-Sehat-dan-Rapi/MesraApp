@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hana.vehicleappproject.data.dummy.RecommendationDummyData
-import com.hana.vehicleappproject.data.dummy.Recommendation
+import com.hana.vehicleappproject.data.local.entity.Recommendation
 
 class RecommendationViewModel : ViewModel() {
     private val _recommendations = MutableLiveData<List<Recommendation>>()

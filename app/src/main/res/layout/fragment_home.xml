@@ -70,6 +70,7 @@
         android:id="@+id/rv_jadwal_perawatan"
         android:layout_width="match_parent"
         android:layout_height="140dp"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/tv_jadwal_perawatan"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,12 +1,8 @@
 package com.hana.vehicleappproject.data.dummy
 
-data class Recommendation(
-    val id: Int,
-    val title: String,
-    val description: String,
-    val category: String
-)
+import com.hana.vehicleappproject.data.local.entity.Recommendation
 
+// Objek singleton yang menyediakan data dummy rekomendasi
 object RecommendationDummyData {
     val recommendations = listOf(
         Recommendation(

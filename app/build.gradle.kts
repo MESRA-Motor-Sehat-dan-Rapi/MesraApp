@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-//    id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
+    id ("kotlin-kapt")
 }
 
 
@@ -64,7 +65,7 @@ dependencies {
 
 // Room Database (Room components)
     implementation(libs.androidx.room.runtime)
-//    ksp(libs.androidx.room.compiler.v250)// Untuk kode Room Annotation Processor)
+    kapt ("androidx.room:room-compiler:2.6.1")// Untuk kode Room Annotation Processor)
     implementation(libs.androidx.room.ktx) // Untuk fungsi coroutine (suspend) di DAO
 
     // ViewModel dan LiveData (Jetpack Components)
